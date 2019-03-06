@@ -24,4 +24,8 @@ public class Room {
     public String getName() {
         return name;
     }
+
+    public boolean isHall() {
+        return getName().equals("hall");
+    }
 }
