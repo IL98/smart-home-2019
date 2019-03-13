@@ -6,14 +6,14 @@ import java.io.IOException;
 
 public class EventCenterHandler {
 
-	private static SmartHome smartHome;
+	private SmartHome smartHome;
 
-	public EventCenterHandler( SmartHomeLoader smartHomeLoader) throws IOException { //
+	public EventCenterHandler( SmartHome smartHome) throws IOException { //
 
-		this.smartHome = smartHomeLoader.loadSmartHome();
+		this.smartHome = smartHome;
 	}
 
-	static void handleEvents(EventGenerator  eventGenerator ) {
+	void handleEvents(EventGenerator  eventGenerator ) {
 		// начинаем цикл обработки событий
 
 		SensorEvent event = eventGenerator.getNextSensorEvent();
@@ -23,17 +23,18 @@ public class EventCenterHandler {
 		}
 	}
 
-	static void handleEvent(SensorEvent event) {
+	void handleEvent(SensorEvent event) {
 		System.out.println("Got event: " + event);
-		if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
-			doEvent(new EventLightHandler(), event);
-		}
-		if (event.getType() == DOOR_OPEN || event.getType() == DOOR_CLOSED) {
-			doEvent(new EventDoorHandler(), event);
-		}
+
+		doEvent(new EventLightHandler(), event);
+
+		doEvent(new EventDoorHandler(), event);
+
+		doEvent(new EventHallDoorHandler(), event);
+
 	}
 
-	static void doEvent(EventHandler eventHandler, SensorEvent event) {
+	void doEvent(EventHandler eventHandler, SensorEvent event) {
 		eventHandler.doAction(smartHome, event);
 	}
 

@@ -8,6 +8,10 @@ public class EventLightHandler implements EventHandler{
 	@Override
 	public void doAction(SmartHome smartHome, SensorEvent event) {
 		// событие от источника света
+		if (event.getType() != LIGHT_ON && event.getType() != LIGHT_OFF) {
+			return;
+		}
+
 		for (Room room : smartHome.getRooms()) {
 			for (Light light : room.getLights()) {
 				if (light.getId().equals(event.getObjectId())) {
@@ -23,13 +27,5 @@ public class EventLightHandler implements EventHandler{
 		}
 	}
 
-	public static void turnOffAllLight(SmartHome smartHome) {
-		for (Room homeRoom : smartHome.getRooms()) {
-			for (Light light : homeRoom.getLights()) {
-				light.setOn(false);
-				SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-				command.sendCommand();
-			}
-		}
-	}
+
 }

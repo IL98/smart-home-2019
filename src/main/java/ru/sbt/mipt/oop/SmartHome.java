@@ -25,4 +25,12 @@ public class SmartHome {
     public Collection<Room> getRooms() {
         return rooms;
     }
+
+    public void turnOffAllLight() {
+        for (Room homeRoom : rooms) {
+            for (Light light : homeRoom.getLights()) {
+                light.setOn(false);
+            }
+        }
+    }
 }
