@@ -7,7 +7,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+import ru.sbt.mipt.oop.action.Action;
+import ru.sbt.mipt.oop.action.HomeComponent;
+
+public class SmartHome implements HomeComponent{
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -31,6 +34,14 @@ public class SmartHome {
             for (Light light : homeRoom.getLights()) {
                 light.setOn(false);
             }
+        }
+    }
+
+    @Override
+    public void executeAction(Action action) {
+        action.execute(this);
+        for (Room room : rooms) {
+            room.executeAction(action);
         }
     }
 }
