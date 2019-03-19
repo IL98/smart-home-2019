@@ -24,11 +24,11 @@ public class EventHallDoorHandlerTest {
 			SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED	, id);
 
 		eventCenterHandler.handleEvent(event);
-		assertFalse(Door.isOpenByIndex(smartHome, id));
+		assertFalse(Door.getDoorById(smartHome, id).isOpen());
 
 		for (Room room: smartHome.getRooms()) {
 			for (Light light : room.getLights()) {
-				assertFalse(Light.isOnByIndex(smartHome, id));
+				assertFalse(Light.getLightById(smartHome, id).isOn());
 			}
 		}
 	}
@@ -42,7 +42,6 @@ public class EventHallDoorHandlerTest {
 				smartHome
 		);
 		String id = "4";
-
 
 		SensorEvent eventLight = new SensorEvent(SensorEventType.LIGHT_ON, id);
 		eventCenterHandler.handleEvent(eventLight);
@@ -58,6 +57,6 @@ public class EventHallDoorHandlerTest {
 			}
 		}
 
-		assertTrue(Light.isOnByIndex(smartHome, id));
+		assertTrue(Light.getLightById(smartHome, id).isOn());
 	}
 }

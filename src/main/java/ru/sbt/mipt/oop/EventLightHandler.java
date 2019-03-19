@@ -7,7 +7,6 @@ import ru.sbt.mipt.oop.action.TurnOnLightById;
 
 public class EventLightHandler implements EventHandler{
 
-
 	@Override
 	public void doAction(SmartHome smartHome, SensorEvent event) {
 

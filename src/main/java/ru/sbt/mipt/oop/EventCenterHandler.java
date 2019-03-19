@@ -3,14 +3,22 @@ package ru.sbt.mipt.oop;
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class EventCenterHandler {
 
 	private SmartHome smartHome;
+	private Collection<EventHandler> eventHandlers;
 
 	public EventCenterHandler( SmartHome smartHome) throws IOException { //
-
 		this.smartHome = smartHome;
+
+		eventHandlers = new ArrayList<>();
+
+		eventHandlers.add(new EventLightHandler());
+		eventHandlers.add(new EventDoorHandler());
+		eventHandlers.add(new EventHallDoorHandler());
 	}
 
 	void handleEvents(EventGenerator  eventGenerator ) {
@@ -26,11 +34,9 @@ public class EventCenterHandler {
 	void handleEvent(SensorEvent event) {
 		System.out.println("Got event: " + event);
 
-		doEvent(new EventLightHandler(), event);
-
-		doEvent(new EventDoorHandler(), event);
-
-		doEvent(new EventHallDoorHandler(), event);
+		for (EventHandler eventHandler : eventHandlers) {
+			doEvent(eventHandler, event);
+		}
 
 	}
 

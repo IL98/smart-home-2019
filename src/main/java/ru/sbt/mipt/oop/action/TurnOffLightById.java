@@ -17,7 +17,7 @@ public class TurnOffLightById implements Action {
 			Light light = (Light) object;
 			if (light.getId().equals(event.getObjectId())) {
 				light.setOn(false);
-				System.out.println("Light " + light.getId()+" in room " + light.getRoomName()+" was turned off.");
+				System.out.println("Light " + light.getId()+" in room " + light.getRoom().getName()+" was turned off.");
 			}
 		}
 	}

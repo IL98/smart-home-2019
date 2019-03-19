@@ -29,13 +29,6 @@ public class SmartHome implements HomeComponent{
         return rooms;
     }
 
-    public void turnOffAllLight() {
-        for (Room homeRoom : rooms) {
-            for (Light light : homeRoom.getLights()) {
-                light.setOn(false);
-            }
-        }
-    }
 
     @Override
     public void executeAction(Action action) {

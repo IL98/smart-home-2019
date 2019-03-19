@@ -25,7 +25,7 @@ public class EventLightHandlerTest {
 		SensorEvent event = new SensorEvent(SensorEventType.LIGHT_ON, id);
 
 		eventCenterHandler.handleEvent(event);
-		assertTrue(Light.isOnByIndex(smartHome, id));
+		assertTrue(Light.getLightById(smartHome, id).isOn());
 
 	}
 
@@ -41,7 +41,7 @@ public class EventLightHandlerTest {
 		SensorEvent event = new SensorEvent(SensorEventType.LIGHT_OFF, id);
 
 		eventCenterHandler.handleEvent(event);
-		assertFalse(Light.isOnByIndex(smartHome, id));
+		assertFalse(Light.getLightById(smartHome, id).isOn());
 
 	}
 

@@ -38,12 +38,12 @@ public class Room implements HomeComponent{
         action.execute(this);
 
         for (Door door : doors) {
-            door.setRoomName(name);
+            door.setRoom(this);
             door.executeAction(action);
         }
 
         for (Light light : lights) {
-            light.setRoomName(name);
+            light.setRoom(this);
             light.executeAction(action);
         }
 

@@ -3,10 +3,19 @@ package ru.sbt.mipt.oop.action;
 import ru.sbt.mipt.oop.Door;
 import ru.sbt.mipt.oop.SensorEvent;
 
-public class CloseDoorAction implements Action {
+public class CheckIsHallAction implements Action{
+
 	private SensorEvent event;
 
-	public CloseDoorAction(SensorEvent event) {
+	private boolean isHall = false;
+
+
+	public boolean isHall() {
+		return isHall;
+	}
+
+
+	public CheckIsHallAction(SensorEvent event) {
 		this.event = event;
 	}
 
@@ -15,8 +24,9 @@ public class CloseDoorAction implements Action {
 		if (object instanceof Door) {
 			Door door = (Door) object;
 			if (door.getId().equals(event.getObjectId())) {
-				door.setOpen(false);
-				System.out.println("Door "+ door.getId()+" in room " + door.getRoom().getName()+" was closed.");
+				if (door.getRoom().getName().equals("hall")) {
+					isHall = true;
+				}
 			}
 		}
 	}

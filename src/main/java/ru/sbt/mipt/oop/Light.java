@@ -2,18 +2,19 @@ package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.action.Action;
 import ru.sbt.mipt.oop.action.HomeComponent;
+import ru.sbt.mipt.oop.action.LightByIdAction;
 
 public class Light implements HomeComponent{
     private boolean isOn;
     private final String id;
-    private String roomName;
+    private Room room;
 
-    public String getRoomName() {
-        return roomName;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Light(String id, boolean isOn) {
@@ -38,14 +39,11 @@ public class Light implements HomeComponent{
         action.execute(this);
     }
 
-    public static boolean isOnByIndex(SmartHome smartHome, String id) {
-        for (Room room : smartHome.getRooms()) {
-            for (Light light: room.getLights()) {
-                if (light.getId().equals(id)) {
-                    return light.isOn();
-                }
-            }
-        }
-        return false;
+    public static Light getLightById(SmartHome smartHome, String id) {
+
+        LightByIdAction lightByIdAction = new LightByIdAction(id);
+        smartHome.executeAction(lightByIdAction);
+
+        return lightByIdAction.getLight();
     }
 }

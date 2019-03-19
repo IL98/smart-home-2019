@@ -16,7 +16,7 @@ public class OpenDoorAction implements Action {
 			Door door = (Door) object;
 			if (door.getId().equals(event.getObjectId())) {
 				door.setOpen(true);
-				System.out.println("Door "+ door.getId() +" in room " + door.getRoomName()+" was opened.");
+				System.out.println("Door "+ door.getId() +" in room " + door.getRoom().getName()+" was opened.");
 			}
 
 		}

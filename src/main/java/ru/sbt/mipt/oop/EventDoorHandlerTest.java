@@ -2,7 +2,6 @@ package ru.sbt.mipt.oop;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import org.junit.*;
 
 
@@ -26,7 +25,7 @@ public class EventDoorHandlerTest {
 		SensorEvent event = new SensorEvent(SensorEventType.DOOR_OPEN, id);
 
 		eventCenterHandler.handleEvent(event);
-		assertTrue(Door.isOpenByIndex(smartHome, id));
+		assertTrue(Door.getDoorById(smartHome, id).isOpen());
 
 	}
 
@@ -42,7 +41,7 @@ public class EventDoorHandlerTest {
 		SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED, id);
 
 		eventCenterHandler.handleEvent(event);
-		assertFalse(Door.isOpenByIndex(smartHome, id));
+		assertFalse(Door.getDoorById(smartHome, id).isOpen());
 
 	}
 
