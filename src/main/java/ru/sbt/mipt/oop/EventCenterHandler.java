@@ -12,10 +12,12 @@ public class EventCenterHandler {
 	private Collection<EventHandler> eventHandlers;
 
 	public EventCenterHandler( SmartHome smartHome) throws IOException { //
+
 		this.smartHome = smartHome;
 
 		eventHandlers = new ArrayList<>();
 
+		eventHandlers.add(new DecaratedAlarmEventHandler(new AlarmEventHandler()));
 		eventHandlers.add(new EventLightHandler());
 		eventHandlers.add(new EventDoorHandler());
 		eventHandlers.add(new EventHallDoorHandler());

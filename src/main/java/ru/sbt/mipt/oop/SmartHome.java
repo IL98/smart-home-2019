@@ -12,6 +12,17 @@ import ru.sbt.mipt.oop.action.HomeComponent;
 
 public class SmartHome implements HomeComponent{
     Collection<Room> rooms;
+    private Alarm alarm = null;
+
+
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    public void setAlarm(Alarm alarm) {
+        this.alarm = alarm;
+    }
+
 
     public SmartHome() {
         rooms = new ArrayList<>();
@@ -37,4 +48,6 @@ public class SmartHome implements HomeComponent{
             room.executeAction(action);
         }
     }
+
+
 }
