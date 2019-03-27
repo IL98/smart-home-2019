@@ -19,7 +19,7 @@ public class EventLightHandlerTest {
 		SmartHome smartHome = jsonSmartHomeLoader.loadSmartHome();
 
 		EventCenterHandler eventCenterHandler = new EventCenterHandler(
-				smartHome
+				smartHome, new RandomEventGenerator()
 		);
 		String id = "4";
 		SensorEvent event = new SensorEvent(SensorEventType.LIGHT_ON, id);
@@ -35,7 +35,7 @@ public class EventLightHandlerTest {
 		SmartHome smartHome = jsonSmartHomeLoader.loadSmartHome();
 
 		EventCenterHandler eventCenterHandler = new EventCenterHandler(
-				smartHome
+				smartHome, new RandomEventGenerator()
 		);
 		String id = "7";
 		SensorEvent event = new SensorEvent(SensorEventType.LIGHT_OFF, id);

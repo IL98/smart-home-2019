@@ -19,7 +19,7 @@ public class EventDoorHandlerTest {
 		SmartHome smartHome = jsonSmartHomeLoader.loadSmartHome();
 
 		EventCenterHandler eventCenterHandler = new EventCenterHandler(
-				smartHome
+				smartHome, new RandomEventGenerator()
 		);
 		String id = "4";
 		SensorEvent event = new SensorEvent(SensorEventType.DOOR_OPEN, id);
@@ -35,7 +35,7 @@ public class EventDoorHandlerTest {
 		SmartHome smartHome = jsonSmartHomeLoader.loadSmartHome();
 
 		EventCenterHandler eventCenterHandler = new EventCenterHandler(
-				smartHome
+				smartHome, new RandomEventGenerator()
 		);
 		String id = "3";
 		SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED, id);

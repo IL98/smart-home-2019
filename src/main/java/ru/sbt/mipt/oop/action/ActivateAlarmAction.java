@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop.action;
 
+import ru.sbt.mipt.oop.Alarm;
 import ru.sbt.mipt.oop.SmartHome;
 
 public class ActivateAlarmAction implements Action{
@@ -14,11 +15,9 @@ public class ActivateAlarmAction implements Action{
 
 	@Override
 	public void execute(Object object) {
-		if (object instanceof SmartHome) {
-			SmartHome smartHome = (SmartHome) object;
-			if (smartHome.getAlarm() != null) {
-				smartHome.getAlarm().activateAlarm(activationCode);
-			}
+		if (object instanceof Alarm) {
+			Alarm alarm = (Alarm) object;
+			alarm.activateAlarm(activationCode);
 		}
 	}
 }

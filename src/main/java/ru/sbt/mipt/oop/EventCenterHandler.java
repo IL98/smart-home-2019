@@ -6,24 +6,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class EventCenterHandler {
+public class EventCenterHandler implements CenterEventManager {
 
 	private SmartHome smartHome;
 	private Collection<EventHandler> eventHandlers;
+	private EventGenerator  eventGenerator;
 
-	public EventCenterHandler( SmartHome smartHome) throws IOException { //
+	public EventCenterHandler( SmartHome smartHome,
+								EventGenerator  eventGenerator) throws IOException { //
 
 		this.smartHome = smartHome;
+		this.eventGenerator = eventGenerator;
 
 		eventHandlers = new ArrayList<>();
-
-		eventHandlers.add(new DecaratedAlarmEventHandler(new AlarmEventHandler()));
-		eventHandlers.add(new EventLightHandler());
-		eventHandlers.add(new EventDoorHandler());
-		eventHandlers.add(new EventHallDoorHandler());
 	}
 
-	void handleEvents(EventGenerator  eventGenerator ) {
+
+	@Override
+	public void handleEvents() {
 		// начинаем цикл обработки событий
 
 		SensorEvent event = eventGenerator.getNextSensorEvent();
@@ -41,6 +41,12 @@ public class EventCenterHandler {
 		}
 
 	}
+
+		@Override
+	public void registerEventHandler(EventHandler eventHandler) {
+		eventHandlers.add(eventHandler);
+	}
+
 
 	void doEvent(EventHandler eventHandler, SensorEvent event) {
 		eventHandler.doAction(smartHome, event);
