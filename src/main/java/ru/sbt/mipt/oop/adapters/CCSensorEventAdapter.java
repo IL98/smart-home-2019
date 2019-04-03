@@ -10,8 +10,9 @@ public class CCSensorEventAdapter implements CenterEventManager {
 	private SensorEventsManager sensorEventsManager;
 	private SmartHome smartHome;
 
-	public CCSensorEventAdapter(SensorEventsManager sensorEventsManager) {
+	public CCSensorEventAdapter(SensorEventsManager sensorEventsManager, SmartHome smartHome) {
 		this.sensorEventsManager = sensorEventsManager;
+		this.smartHome = smartHome;
 	}
 
 	@Override

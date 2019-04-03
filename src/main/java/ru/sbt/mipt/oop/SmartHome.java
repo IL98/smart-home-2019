@@ -44,7 +44,9 @@ public class SmartHome implements HomeComponent{
     @Override
     public void executeAction(Action action) {
         action.execute(this);
-        alarm.executeAction(action);
+        if (alarm != null) {
+            alarm.executeAction(action);
+        }
         for (Room room : rooms) {
             room.executeAction(action);
         }

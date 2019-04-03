@@ -19,7 +19,7 @@ public class EventHallDoorHandler implements EventHandler {
 		smartHome.executeAction(checkIsHallAction);
 
 		if (checkIsHallAction.isHall()) {
-			smartHome.executeAction(new HallTurnOffLight(event));
+			smartHome.executeAction(new HallTurnOffLight());
 		}
 	}
 

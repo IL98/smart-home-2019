@@ -7,12 +7,6 @@ import ru.sbt.mipt.oop.SensorEvent;
 
 public class HallTurnOffLight implements Action{
 
-	private SensorEvent event;
-
-
-	public HallTurnOffLight(SensorEvent event) {
-		this.event = event;
-	}
 
 	@Override
 	public void execute(Object object) {

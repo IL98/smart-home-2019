@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
-import ru.sbt.mipt.oop.action.CloseDoorAction;
+import ru.sbt.mipt.oop.action.CloseDoorActionById;
 import ru.sbt.mipt.oop.action.OpenDoorAction;
 
 public class EventDoorHandler implements EventHandler{
@@ -15,7 +15,7 @@ public class EventDoorHandler implements EventHandler{
 		}
 
 		if (event.getType() == DOOR_CLOSED) {
-			smartHome.executeAction(new CloseDoorAction(event));
+			smartHome.executeAction(new CloseDoorActionById(event));
 		}
 	}
 

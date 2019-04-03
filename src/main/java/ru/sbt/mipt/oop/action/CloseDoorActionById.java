@@ -3,10 +3,10 @@ package ru.sbt.mipt.oop.action;
 import ru.sbt.mipt.oop.Door;
 import ru.sbt.mipt.oop.SensorEvent;
 
-public class CloseDoorAction implements Action {
+public class CloseDoorActionById implements Action {
 	private SensorEvent event;
 
-	public CloseDoorAction(SensorEvent event) {
+	public CloseDoorActionById(SensorEvent event) {
 		this.event = event;
 	}
 

@@ -13,20 +13,22 @@ public class Application {
         SmartHome smartHome = jsonSmartHomeLoader.loadSmartHome();
         smartHome.setAlarm(new Alarm(1111));
 
-        EventCenterHandler eventCenterHandler = new EventCenterHandler(
-                smartHome, new RandomEventGenerator()
-        );
+//        EventCenterHandler eventCenterHandler = new EventCenterHandler(
+//                smartHome, new RandomEventGenerator()
+//        );
 
         SensorEventsManager sensorEventsManager = new SensorEventsManager();
 
-        CCSensorEventAdapter ccSensorEvent = new CCSensorEventAdapter(sensorEventsManager);
+        CCSensorEventAdapter ccSensorEvent = new CCSensorEventAdapter(
+                sensorEventsManager, smartHome
+        );
 
-        eventCenterHandler.registerEventHandler(new DecaratedAlarmEventHandler(new EventLightHandler()));
-        eventCenterHandler.registerEventHandler(new DecaratedAlarmEventHandler(new EventDoorHandler()));
-        eventCenterHandler.registerEventHandler(new DecaratedAlarmEventHandler(new EventHallDoorHandler()));
-        eventCenterHandler.registerEventHandler(new AlarmEventHandler());
+        ccSensorEvent.registerEventHandler(new DecaratedAlarmEventHandler(new EventLightHandler()));
+        ccSensorEvent.registerEventHandler(new DecaratedAlarmEventHandler(new EventDoorHandler()));
+        ccSensorEvent.registerEventHandler(new DecaratedAlarmEventHandler(new EventHallDoorHandler()));
+        ccSensorEvent.registerEventHandler(new AlarmEventHandler());
 
-        eventCenterHandler.handleEvents();
+        ccSensorEvent.handleEvents();
     }
 
 }
