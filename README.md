@@ -1,3 +1,5 @@
+## Начинкин Илья, 695
+
 # smart-home
 
 Project Smart Home implements 'smart home''.
